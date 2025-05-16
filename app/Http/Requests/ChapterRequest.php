@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Validation\Rule;
 
 class ChapterRequest extends FormRequest
@@ -53,6 +55,18 @@ class ChapterRequest extends FormRequest
             'title.unique' => 'Title already exists.',
             'book_id.unique' => 'Book is required.',
         ];
+    }
+
+    /**
+     * Force JSON response for validation errors
+     */
+    protected function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(response()->json([
+            'status' => false,
+            'message' => 'Validation error',
+            'errors' => $validator->errors(),
+        ], 422));
     }
 }
 

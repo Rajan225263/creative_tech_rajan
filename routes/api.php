@@ -8,6 +8,9 @@ use App\Http\Controllers\API\BookController;
 use App\Http\Controllers\API\ChapterController;
 use App\Http\Controllers\API\PageController;
 
+use App\Http\Controllers\Api\TestSwaggerController;
+
+
 Route::middleware('auth.token')->group(function () {
 
     Route::prefix('bookshelves')->group(function () {
@@ -47,5 +50,8 @@ Route::middleware('auth.token')->group(function () {
     });
 
 });
+
+Route::get('/hello', [TestSwaggerController::class, 'hello']);
+
 
 

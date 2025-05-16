@@ -24,6 +24,16 @@ class ChapterController extends Controller
      * List all chapters
      */
 
+    /**
+     * @OA\Get(
+     *     path="/api/chapters",
+     *     summary="Get all chapters",
+     *     tags={"Chapters"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Response(response=200, description="List of chapters")
+     * )
+     */
+
     public function index(): JsonResponse
     {
         return response()->json(resolve(ChapterRepositoryContact::class)->getAll());
@@ -31,6 +41,25 @@ class ChapterController extends Controller
 
     /**
      * Create a new chapter
+     */
+
+    /**
+     * @OA\Post(
+     *     path="/api/chapters",
+     *     summary="Create a new chapter",
+     *     tags={"Chapters"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"title", "chapter_number", "book_id"},
+     *             @OA\Property(property="title", type="string", example="Introduction"),
+     *             @OA\Property(property="chapter_number", type="integer", example=1),
+     *             @OA\Property(property="book_id", type="integer", example=2)
+     *         )
+     *     ),
+     *     @OA\Response(response=201, description="Chapter created")
+     * )
      */
 
     public function store(ChapterRequest $request): JsonResponse
@@ -57,6 +86,17 @@ class ChapterController extends Controller
 
     /**
      * Show a single chapter by ID using findOrFail
+     */
+
+    /**
+     * @OA\Get(
+     *     path="/api/chapters/{id}",
+     *     summary="Get a chapter by ID",
+     *     tags={"Chapters"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Response(response=200, description="Chapter details")
+     * )
      */
 
     public function show($id): JsonResponse
@@ -91,6 +131,25 @@ class ChapterController extends Controller
      * Update an existing chapter by ID.
      */
 
+    /**
+     * @OA\Put(
+     *     path="/api/chapters/{id}",
+     *     summary="Update a chapter",
+     *     tags={"Chapters"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="title", type="string", example="Updated Title"),
+     *             @OA\Property(property="chapter_number", type="integer", example=2),
+     *             @OA\Property(property="book_id", type="integer", example=3)
+     *         )
+     *     ),
+     *     @OA\Response(response=200, description="Chapter updated")
+     * )
+     */
+
     public function update(ChapterRequest $request, $id): JsonResponse
     {
         try {
@@ -123,6 +182,17 @@ class ChapterController extends Controller
      * Delete a chapter by ID
      */
 
+    /**
+     * @OA\Delete(
+     *     path="/api/chapters/{id}",
+     *     summary="Delete a chapter",
+     *     tags={"Chapters"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Response(response=204, description="Chapter deleted")
+     * )
+     */
+
     public function destroy($id): JsonResponse
     {
         try {
@@ -149,6 +219,17 @@ class ChapterController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * @OA\Get(
+     *     path="/api/chapters/{id}/full-content",
+     *     summary="Get full content of a chapter",
+     *     tags={"Chapters"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Response(response=200, description="Full content")
+     * )
+     */
 
     public function fullContent(int $chapterId)
     {

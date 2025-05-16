@@ -8,6 +8,15 @@ use App\Repositories\BookshelfRepository\BookshelfRepositoryContact;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
+/**
+ * @OA\SecurityScheme(
+ *     securityScheme="ApiTokenAuth",
+ *     type="apiKey",
+ *     in="header",
+ *     name="X-API-TOKEN",
+ *     description="Token based authentication using X-API-TOKEN header"
+ * )
+ */
 
 class BookshelfController extends Controller
 {
@@ -24,6 +33,16 @@ class BookshelfController extends Controller
      * List all bookshelves
      */
 
+    /**
+     * @OA\Get(
+     *     path="/api/bookshelves",
+     *     summary="Get list of bookshelves",
+     *     tags={"Bookshelves"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Response(response=200, description="Success")
+     * )
+ */
+
     public function index(): JsonResponse
     {
         return response()->json($this->bookshelfRepo->getAll());
@@ -31,6 +50,24 @@ class BookshelfController extends Controller
 
     /**
      * Create a new bookshelf
+     */
+
+    /**
+     * @OA\Post(
+     *     path="/api/bookshelves",
+     *     summary="Create a new bookshelf",
+     *     tags={"Bookshelves"},
+     *      security={{"ApiTokenAuth":{}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"name", "location"},
+     *             @OA\Property(property="name", type="string", example="Test"),
+     *             @OA\Property(property="location", type="string", example="Test")
+     *         )
+     *     ),
+     *     @OA\Response(response=201, description="Bookshelf created")
+     * )
      */
 
     public function store(BookshelfRequest $request): JsonResponse
@@ -57,6 +94,17 @@ class BookshelfController extends Controller
 
     /**
      * Show a single bookshelf by ID using findOrFail
+     */
+
+    /**
+     * @OA\Get(
+     *     path="/api/bookshelves/{id}",
+     *     summary="Get a single bookshelf",
+     *     tags={"Bookshelves"},
+     *      security={{"ApiTokenAuth":{}}},
+     *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Response(response=200, description="Bookshelf details")
+     * )
      */
 
     public function show($id): JsonResponse
@@ -91,6 +139,24 @@ class BookshelfController extends Controller
      * Update an existing bookshelf by ID.
      */
 
+    /**
+     * @OA\Put(
+     *     path="/api/bookshelves/{id}",
+     *     summary="Update a bookshelf",
+     *     tags={"Bookshelves"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             @OA\Property(property="name", type="string", example="Test"),
+     *             @OA\Property(property="location", type="string", example="Test")
+     *         )
+     *     ),
+     *     @OA\Response(response=200, description="Bookshelf updated")
+     * )
+     */
+
+
     public function update(BookshelfRequest $request, $id): JsonResponse
     {
         try {
@@ -121,6 +187,17 @@ class BookshelfController extends Controller
 
     /**
      * Delete a bookshelf by ID
+     */
+
+    /**
+     * @OA\Delete(
+     *     path="/api/bookshelves/{id}",
+     *     summary="Delete a bookshelf",
+     *     tags={"Bookshelves"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Response(response=204, description="Bookshelf deleted")
+     * )
      */
 
     public function destroy($id): JsonResponse
