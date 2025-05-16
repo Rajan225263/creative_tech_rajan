@@ -14,7 +14,7 @@ It supports managing **Bookshelves, Books, Chapters, and Pages**.
 
 ```bash
 # 1. Clone the project
-git clone https://github.com/your-username/library-management.git
+git clone https://github.com/Rajan225263/library-management-rajan.git
 cd library-management
 
 # 2. Install packages
@@ -51,20 +51,34 @@ Each with:
 10 Chapters per book
 10 Pages per chapter
 
-Run the seeders:
-php artisan migrate:fresh --seed
+## Example API Endpoints:
 
-## Example API Endpoints
+Method	Endpoint	Description
+GET	/api/bookshelves	List bookshelves
+POST	/api/bookshelves	Create bookshelf
+GET	/api/bookshelves/{id}	Show bookshelf
+PUT	/api/bookshelves/{id}	Update bookshelf
+DELETE	/api/bookshelves/{id}	Delete bookshelf
+GET	/api/books	List books
+POST	/api/books	Create book
+GET	/api/books/{id}	Show book
+PUT	/api/books/{id}	Update book
+DELETE	/api/books/{id}	Delete book
+GET	/api/books/search	Search books
+GET	/api/chapters	List chapters
+POST	/api/chapters	Create chapter
+GET	/api/chapters/{id}	Show chapter
+PUT	/api/chapters/{id}	Update chapter
+DELETE	/api/chapters/{id}	Delete chapter
+GET	/api/chapters/{id}/full-content	Full content of chapter
+GET	/api/pages	List pages
+POST	/api/pages	Create page
+GET	/api/pages/{id}	Show page
+PUT	/api/pages/{id}	Update page
+DELETE	/api/pages/{id}	Delete page
 
-| Method | Endpoint              | Description          |
-| ------ | --------------------- | -------------------- |
-| GET    | /api/bookshelves      | List all bookshelves |
-| POST   | /api/bookshelves      | Create a bookshelf   |
-| GET    | /api/bookshelves/{id} | Get single bookshelf |
-| PUT    | /api/bookshelves/{id} | Update a bookshelf   |
-| DELETE | /api/bookshelves/{id} | Delete a bookshelf   |
-| GET    | /api/books            | List all books       |
-| GET    | /api/chapters         | List all chapters    |
-| GET    | /api/pages            | List all pages       |
+## Swagger UI
+URL: http://127.0.0.1:8000/api/documentation
+Use "Authorize" → X-API-TOKEN → Paste your token
 
 
