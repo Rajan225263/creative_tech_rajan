@@ -15,7 +15,7 @@ It supports managing **Bookshelves, Books, Chapters, and Pages**.
 ```bash
 # 1. Clone the project
 git clone https://github.com/Rajan225263/library-management-rajan.git
-cd library-management
+cd library-management-rajan
 
 # 2. Install packages
 composer install
