@@ -80,5 +80,7 @@ DELETE	/api/pages/{id}	Delete page
 ## Swagger UI
 URL: http://127.0.0.1:8000/api/documentation
 Use "Authorize" → X-API-TOKEN → Paste your token
+Ser this is in .env
+L5_SWAGGER_CONST_HOST=http://127.0.0.1:8000
 
 
