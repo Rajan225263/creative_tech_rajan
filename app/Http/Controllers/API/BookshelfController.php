@@ -62,8 +62,8 @@ class BookshelfController extends Controller
      *         required=true,
      *         @OA\JsonContent(
      *             required={"name", "location"},
-     *             @OA\Property(property="name", type="string"),
-     *             @OA\Property(property="location", type="string")
+     *             @OA\Property(property="name", type="string", example="Test"),
+     *             @OA\Property(property="location", type="string", example="Test")
      *         )
      *     ),
      *     @OA\Response(response=201, description="Bookshelf created")
@@ -148,8 +148,8 @@ class BookshelfController extends Controller
      *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
      *     @OA\RequestBody(
      *         @OA\JsonContent(
-     *             @OA\Property(property="name", type="string"),
-     *             @OA\Property(property="location", type="string")
+     *             @OA\Property(property="name", type="string", example="Test"),
+     *             @OA\Property(property="location", type="string", example="Test")
      *         )
      *     ),
      *     @OA\Response(response=200, description="Bookshelf updated")

@@ -54,10 +54,10 @@ class BookController extends Controller
      *         required=true,
      *         @OA\JsonContent(
      *             required={"title", "author", "published_year", "bookshelf_id"},
-     *             @OA\Property(property="title", type="string"),
-     *             @OA\Property(property="author", type="string"),
-     *             @OA\Property(property="published_year", type="integer"),
-     *             @OA\Property(property="bookshelf_id", type="integer")
+     *             @OA\Property(property="title", type="string", example="Test"),
+     *             @OA\Property(property="author", type="string", example="Test"),
+     *             @OA\Property(property="published_year", type="integer", example="2022"),
+     *             @OA\Property(property="bookshelf_id", type="integer", example=1)
      *         )
      *     ),
      *     @OA\Response(response=201, description="Book created")
@@ -142,10 +142,10 @@ class BookController extends Controller
      *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
      *     @OA\RequestBody(
      *         @OA\JsonContent(
-     *             @OA\Property(property="title", type="string"),
-     *             @OA\Property(property="author", type="string"),
-     *             @OA\Property(property="published_year", type="integer"),
-     *             @OA\Property(property="bookshelf_id", type="integer")
+     *             @OA\Property(property="title", type="string", example="Test"),
+     *             @OA\Property(property="author", type="string", example="Test"),
+     *             @OA\Property(property="published_year", type="integer", example="2022"),
+     *             @OA\Property(property="bookshelf_id", type="integer", example=1)
      *         )
      *     ),
      *     @OA\Response(response=200, description="Book updated")

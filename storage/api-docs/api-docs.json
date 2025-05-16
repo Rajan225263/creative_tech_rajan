@@ -47,16 +47,20 @@
                                 ],
                                 "properties": {
                                     "title": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "Test"
                                     },
                                     "author": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "Test"
                                     },
                                     "published_year": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "example": "2022"
                                     },
                                     "bookshelf_id": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "example": 1
                                     }
                                 },
                                 "type": "object"
@@ -126,16 +130,20 @@
                             "schema": {
                                 "properties": {
                                     "title": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "Test"
                                     },
                                     "author": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "Test"
                                     },
                                     "published_year": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "example": "2022"
                                     },
                                     "bookshelf_id": {
-                                        "type": "integer"
+                                        "type": "integer",
+                                        "example": 1
                                     }
                                 },
                                 "type": "object"
@@ -247,10 +255,12 @@
                                 ],
                                 "properties": {
                                     "name": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "Test"
                                     },
                                     "location": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "Test"
                                     }
                                 },
                                 "type": "object"
@@ -320,10 +330,12 @@
                             "schema": {
                                 "properties": {
                                     "name": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "Test"
                                     },
                                     "location": {
-                                        "type": "string"
+                                        "type": "string",
+                                        "example": "Test"
                                     }
                                 },
                                 "type": "object"
@@ -616,7 +628,7 @@
                                     },
                                     "chapter_id": {
                                         "type": "integer",
-                                        "example": 4
+                                        "example": 1
                                     }
                                 },
                                 "type": "object"
@@ -688,7 +700,7 @@
                                 "properties": {
                                     "page_number": {
                                         "type": "integer",
-                                        "example": 2
+                                        "example": 1
                                     },
                                     "content": {
                                         "type": "string",
@@ -696,7 +708,7 @@
                                     },
                                     "chapter_id": {
                                         "type": "integer",
-                                        "example": 5
+                                        "example": 1
                                     }
                                 },
                                 "type": "object"

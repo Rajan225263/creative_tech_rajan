@@ -54,7 +54,7 @@ class PageController extends Controller
      *             required={"page_number", "content", "chapter_id"},
      *             @OA\Property(property="page_number", type="integer", example=1),
      *             @OA\Property(property="content", type="string", example="Page content goes here..."),
-     *             @OA\Property(property="chapter_id", type="integer", example=4)
+     *             @OA\Property(property="chapter_id", type="integer", example=1)
      *         )
      *     ),
      *     @OA\Response(response=201, description="Page created")
@@ -140,9 +140,9 @@ class PageController extends Controller
      *     @OA\RequestBody(
      *         required=true,
      *         @OA\JsonContent(
-     *             @OA\Property(property="page_number", type="integer", example=2),
+     *             @OA\Property(property="page_number", type="integer", example=1),
      *             @OA\Property(property="content", type="string", example="Updated content"),
-     *             @OA\Property(property="chapter_id", type="integer", example=5)
+     *             @OA\Property(property="chapter_id", type="integer", example=1)
      *         )
      *     ),
      *     @OA\Response(response=200, description="Page updated")
