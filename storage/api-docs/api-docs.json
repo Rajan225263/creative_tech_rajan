@@ -1,0 +1,793 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Library Manageemnt API",
+        "description": "Library Manageemnt API for Swagger integration",
+        "contact": {
+            "name": "Rajan Bhatta (+88 0162119979, aobak63@gmail.com)",
+            "email": "aobak63@gmail.com"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/books": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Get all books",
+                "operationId": "64ce85f06fc87443a16496268e88cddb",
+                "responses": {
+                    "200": {
+                        "description": "List of books"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Create a new book",
+                "operationId": "4114213d13c3b8499c6aec21511edb28",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "author",
+                                    "published_year",
+                                    "bookshelf_id"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "author": {
+                                        "type": "string"
+                                    },
+                                    "published_year": {
+                                        "type": "integer"
+                                    },
+                                    "bookshelf_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Book created"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/books/{id}": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Get a single book",
+                "operationId": "e473ab3a66f0daaa9bf1b70b29dd5288",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Book details"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Update a book",
+                "operationId": "7341e0ef7ae7c978e0f7ef257d9dbba9",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "author": {
+                                        "type": "string"
+                                    },
+                                    "published_year": {
+                                        "type": "integer"
+                                    },
+                                    "bookshelf_id": {
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Book updated"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Delete a book",
+                "operationId": "b74ac8316831ae82112b04392815bd67",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Book deleted"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/books/search": {
+            "get": {
+                "tags": [
+                    "Books"
+                ],
+                "summary": "Search for books",
+                "operationId": "a8bcea204ef320eb8d8bf51f66a45089",
+                "parameters": [
+                    {
+                        "name": "query",
+                        "in": "query",
+                        "description": "The search keyword for books",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Search results"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/bookshelves": {
+            "get": {
+                "tags": [
+                    "Bookshelves"
+                ],
+                "summary": "Get list of bookshelves",
+                "operationId": "b52dce403a02ed90145cc77e78d797da",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Bookshelves"
+                ],
+                "summary": "Create a new bookshelf",
+                "operationId": "a082e83c0b991baa754573bd4662f5ca",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "name",
+                                    "location"
+                                ],
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "location": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Bookshelf created"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/bookshelves/{id}": {
+            "get": {
+                "tags": [
+                    "Bookshelves"
+                ],
+                "summary": "Get a single bookshelf",
+                "operationId": "b1d9565a9f1be25b6296d3ed1b68668d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Bookshelf details"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Bookshelves"
+                ],
+                "summary": "Update a bookshelf",
+                "operationId": "3486f0061228040450f972603123e595",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "location": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Bookshelf updated"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Bookshelves"
+                ],
+                "summary": "Delete a bookshelf",
+                "operationId": "45e4faef3651d8d9a79c02c4d7dbb1aa",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Bookshelf deleted"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/chapters": {
+            "get": {
+                "tags": [
+                    "Chapters"
+                ],
+                "summary": "Get all chapters",
+                "operationId": "a09e626f11a0679cdf99643029b567b1",
+                "responses": {
+                    "200": {
+                        "description": "List of chapters"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Chapters"
+                ],
+                "summary": "Create a new chapter",
+                "operationId": "866975f2ef9c930eaee84478c48264c7",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "chapter_number",
+                                    "book_id"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Introduction"
+                                    },
+                                    "chapter_number": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "book_id": {
+                                        "type": "integer",
+                                        "example": 2
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Chapter created"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/chapters/{id}": {
+            "get": {
+                "tags": [
+                    "Chapters"
+                ],
+                "summary": "Get a chapter by ID",
+                "operationId": "9e54ec0d5e1f7093e510814e66642751",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Chapter details"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Chapters"
+                ],
+                "summary": "Update a chapter",
+                "operationId": "d1785553822482b69aee4c273b64fce5",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "type": "string",
+                                        "example": "Updated Title"
+                                    },
+                                    "chapter_number": {
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "book_id": {
+                                        "type": "integer",
+                                        "example": 3
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Chapter updated"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Chapters"
+                ],
+                "summary": "Delete a chapter",
+                "operationId": "83a6bf2188b7583a04cf82fb4f979d98",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Chapter deleted"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/chapters/{id}/full-content": {
+            "get": {
+                "tags": [
+                    "Chapters"
+                ],
+                "summary": "Get full content of a chapter",
+                "operationId": "9acc4762cd7d984ed2b96040d9568f0d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Full content"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/pages": {
+            "get": {
+                "tags": [
+                    "Pages"
+                ],
+                "summary": "Get all pages",
+                "operationId": "cd59deb18bfa6add22005d63640ccd06",
+                "responses": {
+                    "200": {
+                        "description": "List of pages"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Pages"
+                ],
+                "summary": "Create a new page",
+                "operationId": "22ffe9506aba1ed019b4d54f3d7764ea",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "page_number",
+                                    "content",
+                                    "chapter_id"
+                                ],
+                                "properties": {
+                                    "page_number": {
+                                        "type": "integer",
+                                        "example": 1
+                                    },
+                                    "content": {
+                                        "type": "string",
+                                        "example": "Page content goes here..."
+                                    },
+                                    "chapter_id": {
+                                        "type": "integer",
+                                        "example": 4
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Page created"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/pages/{id}": {
+            "get": {
+                "tags": [
+                    "Pages"
+                ],
+                "summary": "Get a page by ID",
+                "operationId": "e1e47ccc00c6b4d242e9370dac64dd5d",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Page details"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Pages"
+                ],
+                "summary": "Update a page",
+                "operationId": "0db0c90b61af20d0c9eeb5f440b91081",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "page_number": {
+                                        "type": "integer",
+                                        "example": 2
+                                    },
+                                    "content": {
+                                        "type": "string",
+                                        "example": "Updated content"
+                                    },
+                                    "chapter_id": {
+                                        "type": "integer",
+                                        "example": 5
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Page updated"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Pages"
+                ],
+                "summary": "Delete a page",
+                "operationId": "1d34244ac8efd74dd341c8f746a4ce30",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "204": {
+                        "description": "Page deleted"
+                    }
+                },
+                "security": [
+                    {
+                        "ApiTokenAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/hello": {
+            "get": {
+                "tags": [
+                    "Test"
+                ],
+                "summary": "Say Hello",
+                "operationId": "d4dce1eb5ad2d5e3e585fc95f4c768a6",
+                "responses": {
+                    "200": {
+                        "description": "Success"
+                    }
+                }
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "ApiTokenAuth": {
+                "type": "apiKey",
+                "description": "Token based authentication using X-API-TOKEN header",
+                "name": "X-API-TOKEN",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Books",
+            "description": "Books"
+        },
+        {
+            "name": "Bookshelves",
+            "description": "Bookshelves"
+        },
+        {
+            "name": "Chapters",
+            "description": "Chapters"
+        },
+        {
+            "name": "Pages",
+            "description": "Pages"
+        },
+        {
+            "name": "Test",
+            "description": "Test"
+        }
+    ]
+}

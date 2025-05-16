@@ -25,6 +25,16 @@ class BookController extends Controller
      * List all books
      */
 
+    /**
+     * @OA\Get(
+     *     path="/api/books",
+     *     summary="Get all books",
+     *     tags={"Books"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Response(response=200, description="List of books")
+     * )
+     */
+
     public function index(): JsonResponse
     {
         return response()->json(resolve(BookRepositoryContact::class)->getAll());
@@ -32,6 +42,26 @@ class BookController extends Controller
 
     /**
      * Create a new book
+     */
+
+    /**
+     * @OA\Post(
+     *     path="/api/books",
+     *     summary="Create a new book",
+     *     tags={"Books"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"title", "author", "published_year", "bookshelf_id"},
+     *             @OA\Property(property="title", type="string"),
+     *             @OA\Property(property="author", type="string"),
+     *             @OA\Property(property="published_year", type="integer"),
+     *             @OA\Property(property="bookshelf_id", type="integer")
+     *         )
+     *     ),
+     *     @OA\Response(response=201, description="Book created")
+     * )
      */
 
     public function store(BookRequest $request): JsonResponse
@@ -58,6 +88,17 @@ class BookController extends Controller
 
     /**
      * Show a single book by ID using findOrFail
+     */
+
+    /**
+     * @OA\Get(
+     *     path="/api/books/{id}",
+     *     summary="Get a single book",
+     *     tags={"Books"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Response(response=200, description="Book details")
+     * )
      */
 
     public function show($id): JsonResponse
@@ -92,6 +133,25 @@ class BookController extends Controller
      * Update an existing book by ID.
      */
 
+    /**
+     * @OA\Put(
+     *     path="/api/books/{id}",
+     *     summary="Update a book",
+     *     tags={"Books"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\RequestBody(
+     *         @OA\JsonContent(
+     *             @OA\Property(property="title", type="string"),
+     *             @OA\Property(property="author", type="string"),
+     *             @OA\Property(property="published_year", type="integer"),
+     *             @OA\Property(property="bookshelf_id", type="integer")
+     *         )
+     *     ),
+     *     @OA\Response(response=200, description="Book updated")
+     * )
+     */
+
     public function update(BookRequest $request, $id): JsonResponse
     {
         try {
@@ -124,6 +184,17 @@ class BookController extends Controller
      * Delete a book by ID
      */
 
+    /**
+     * @OA\Delete(
+     *     path="/api/books/{id}",
+     *     summary="Delete a book",
+     *     tags={"Books"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Response(response=204, description="Book deleted")
+     * )
+     */
+
     public function destroy($id): JsonResponse
     {
         try {
@@ -150,6 +221,23 @@ class BookController extends Controller
             ], 500);
         }
     }
+
+    /**
+     * @OA\Get(
+     *     path="/api/books/search",
+     *     summary="Search for books",
+     *     tags={"Books"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Parameter(
+     *         name="query",
+     *         in="query",
+     *         required=true,
+     *         description="The search keyword for books",
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(response=200, description="Search results")
+     * )
+     */
 
     public function search(BookSearchRequest $request)
     {

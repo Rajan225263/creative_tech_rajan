@@ -8,7 +8,6 @@ use App\Repositories\PageRepository\PageRepositoryContact;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
-
 class PageController extends Controller
 {
     /**
@@ -24,6 +23,16 @@ class PageController extends Controller
      * List all pages
      */
 
+    /**
+     * @OA\Get(
+     *     path="/api/pages",
+     *     summary="Get all pages",
+     *     tags={"Pages"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Response(response=200, description="List of pages")
+     * )
+     */
+
     public function index(): JsonResponse
     {
         return response()->json(resolve(PageRepositoryContact::class)->getAll());
@@ -31,6 +40,25 @@ class PageController extends Controller
 
     /**
      * Create a new page
+     */
+
+    /**
+     * @OA\Post(
+     *     path="/api/pages",
+     *     summary="Create a new page",
+     *     tags={"Pages"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"page_number", "content", "chapter_id"},
+     *             @OA\Property(property="page_number", type="integer", example=1),
+     *             @OA\Property(property="content", type="string", example="Page content goes here..."),
+     *             @OA\Property(property="chapter_id", type="integer", example=4)
+     *         )
+     *     ),
+     *     @OA\Response(response=201, description="Page created")
+     * )
      */
 
     public function store(PageRequest $request): JsonResponse
@@ -57,6 +85,17 @@ class PageController extends Controller
 
     /**
      * Show a single page by ID using findOrFail
+     */
+
+    /**
+     * @OA\Get(
+     *     path="/api/pages/{id}",
+     *     summary="Get a page by ID",
+     *     tags={"Pages"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Response(response=200, description="Page details")
+     * )
      */
 
     public function show($id): JsonResponse
@@ -91,6 +130,25 @@ class PageController extends Controller
      * Update an existing page by ID.
      */
 
+    /**
+     * @OA\Put(
+     *     path="/api/pages/{id}",
+     *     summary="Update a page",
+     *     tags={"Pages"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             @OA\Property(property="page_number", type="integer", example=2),
+     *             @OA\Property(property="content", type="string", example="Updated content"),
+     *             @OA\Property(property="chapter_id", type="integer", example=5)
+     *         )
+     *     ),
+     *     @OA\Response(response=200, description="Page updated")
+     * )
+     */
+
     public function update(PageRequest $request, $id): JsonResponse
     {
         try {
@@ -121,6 +179,18 @@ class PageController extends Controller
 
     /**
      * Delete a page by ID
+     */
+
+
+    /**
+     * @OA\Delete(
+     *     path="/api/pages/{id}",
+     *     summary="Delete a page",
+     *     tags={"Pages"},
+     *     security={{"ApiTokenAuth":{}}},
+     *     @OA\Parameter(name="id", in="path", required=true, @OA\Schema(type="integer")),
+     *     @OA\Response(response=204, description="Page deleted")
+     * )
      */
 
     public function destroy($id): JsonResponse
