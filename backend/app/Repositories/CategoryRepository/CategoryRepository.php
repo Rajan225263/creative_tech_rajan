@@ -8,31 +8,39 @@ use Illuminate\Database\Eloquent\Model;
 
 class CategoryRepository implements CategoryRepositoryContact
 {
+    protected $category;
+
+    // Constructor injection
+    public function __construct(Category $category)
+    {
+        $this->category = $category;
+    }
+
     public function getAll()
     {
-        return Category::all();
+        return $this->category->all();
     }
 
     public function find(int $id)
     {
-        return Category::findOrFail($id);
+        return $this->category->findOrFail($id);
     }
 
     public function create(array $data)
     {
-        return Category::create($data);
+        return $this->category->create($data);
     }
 
     public function update(int $id, array $data)
     {
-        $category = Category::findOrFail($id);
+        $category = $this->category->findOrFail($id);
         $category->update($data);
         return $category;
     }
 
     public function delete(int $id)
     {
-        $category = Category::findOrFail($id);
+        $category = $this->category->findOrFail($id);
         $category->delete();
         return true;
     }

@@ -8,19 +8,27 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductRepository implements ProductRepositoryContact
 {
+    protected $product;
+
+    // Constructor injection
+    public function __construct(Product $product)
+    {
+        $this->product = $product;
+    }
+
     public function getAll()
     {
-        return Product::with('categories')->get();
+        return $this->product->with('categories')->get();
     }
 
     public function find(int $id)
     {
-        return Product::with('categories')->findOrFail($id);
+        return $this->product->with('categories')->findOrFail($id);
     }
 
     public function create(array $data)
     {
-        $product = Product::create([
+        $product = $this->product->create([
             'name' => $data['name'],
             'description' => $data['description'] ?? null,
             'price' => $data['price'],
@@ -32,7 +40,7 @@ class ProductRepository implements ProductRepositoryContact
 
     public function update(int $id, array $data)
     {
-        $product = Product::findOrFail($id);
+        $product = $this->product->findOrFail($id);
         $product->update($data);
 
         if (isset($data['category_ids'])) {
@@ -44,7 +52,7 @@ class ProductRepository implements ProductRepositoryContact
 
     public function delete(int $id)
     {
-        $product = Product::findOrFail($id);
+        $product = $this->product->findOrFail($id);
         $product->categories()->detach();
         $product->delete();
 
