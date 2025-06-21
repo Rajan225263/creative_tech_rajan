@@ -18,7 +18,7 @@
     const errors = ref({});
     const load = async () => {
         const res = await api.get(`/categories/${route.params.id}`);
-        form.value = res.data;
+        form.value = res.data.data;  // <-- API response থেকে সঠিক জায়গা থেকে ডাটা নিন
     };
     const submit = async () => {
         errors.value = {};
