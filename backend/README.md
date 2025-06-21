@@ -29,7 +29,7 @@ This project is a Laravel 12 backend API with MySQL database for managing **Cate
 1. **Clone the repository**
 
  ```bash
-git clone <repository-url>
+git clone https://github.com/Rajan225263/creative_tech_rajan.git
 Navigate to backend directory
 
 cd project-root/backend
